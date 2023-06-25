@@ -1,4 +1,7 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.agencyFocus;
+
+import com.example.testjpabuddy.focus.Focus;
+import com.example.testjpabuddy.agency.Agency;
 
 import javax.persistence.*;
 

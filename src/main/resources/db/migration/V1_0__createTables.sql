@@ -22,7 +22,7 @@ create table Account(
     account_type_id char(1) not null,
     constraint pk_Account primary key(id),
     constraint fk_Account_Account_Type foreign key(account_type_id) references Account_Type(id)
-)
+);
 
 
 create table Agency(
@@ -30,15 +30,23 @@ create table Agency(
     name varchar(60) not null,
     ein varchar(20),
     address1 varchar(100) not null,
+    address2 varchar(100),
+    city varchar(30) not null,
+    st char(2) not null,
+    zip varchar(10) not null,
     constraint pk_Agency primary key(id)
-)
+);
 
 create table Event(
     id bigInt not null auto_increment,
     name varchar(60) not null,
     address1 varchar(100) not null,
+    address2 varchar(100),
+    city varchar(30) not null,
+    st char(2) not null,
+    zip varchar(10) not null,
     constraint pk_Event primary key(id)
-)
+);
 
 create table Donation(
     id bigInt not null auto_increment,

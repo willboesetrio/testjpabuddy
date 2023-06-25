@@ -1,4 +1,10 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.account;
+
+import com.example.testjpabuddy.accountType.AccountType;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -54,6 +60,9 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ACCOUNT_TYPE_ID", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("account_type_id")
     private AccountType accountType;
 
     public Long getId() {

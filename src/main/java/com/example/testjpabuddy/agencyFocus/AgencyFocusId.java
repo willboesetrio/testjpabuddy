@@ -1,4 +1,4 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.agencyFocus;
 
 import org.hibernate.Hibernate;
 

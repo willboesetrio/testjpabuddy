@@ -1,4 +1,4 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.eventAgency;
 
 import org.hibernate.Hibernate;
 

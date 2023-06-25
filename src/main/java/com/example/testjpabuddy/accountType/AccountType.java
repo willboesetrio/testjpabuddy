@@ -1,4 +1,6 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.accountType;
+
+import com.example.testjpabuddy.account.Account;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;

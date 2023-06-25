@@ -1,4 +1,7 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.eventAgencyJob;
+
+import com.example.testjpabuddy.agency.Agency;
+import com.example.testjpabuddy.event.Event;
 
 import javax.persistence.*;
 

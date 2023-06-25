@@ -1,4 +1,4 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.itemType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

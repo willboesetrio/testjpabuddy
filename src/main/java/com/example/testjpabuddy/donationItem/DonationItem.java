@@ -1,4 +1,11 @@
-package com.example.testjpabuddy;
+package com.example.testjpabuddy.donationItem;
+
+import com.example.testjpabuddy.itemType.ItemType;
+import com.example.testjpabuddy.donation.Donation;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,10 +23,16 @@ public class DonationItem {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DONATION_ID", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("donation_id")
     private Donation donation;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ITEM_TYPE_ID", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("item_type_id")
     private ItemType itemType;
 
     @Column(name = "DESC")
