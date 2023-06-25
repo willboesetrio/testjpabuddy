@@ -2,6 +2,10 @@ package com.example.testjpabuddy.eventParticipant;
 
 import com.example.testjpabuddy.account.Account;
 import com.example.testjpabuddy.eventAgencyJob.EventAgencyJob;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
@@ -18,10 +22,16 @@ public class EventParticipant {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "EVENT_AGENCY_JOB_ID", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("event_agency_job_id")
     private EventAgencyJob eventAgencyJob;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("account_id")
     private Account account;
 
     @Column(name = "HOURS_REGISTERED", nullable = false)

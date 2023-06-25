@@ -1,6 +1,9 @@
 package com.example.testjpabuddy.agency;
 
+import com.example.testjpabuddy.event.Event;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "AGENCY")
@@ -29,6 +32,21 @@ public class Agency {
 
     @Column(name = "ZIP", nullable = false, length = 10)
     private String zip;
+
+    @OneToMany
+    @JoinTable(name = "Event_Agency",
+            joinColumns = {@JoinColumn(name = "agency_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")}
+    )
+    public List<Event> events;
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 
     public String getAddress2() {
         return address2;
