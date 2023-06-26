@@ -7,4 +7,6 @@ public interface AccountService {
     public List<Account> getAllAccounts();
 
     Account getAccountById(Long id);
+
+     Account postLogin(LoginDto loginDto);
 }

@@ -19,6 +19,11 @@ public class AccountServiceImpl implements AccountService{
         return accountRepo.getAccountById(id);
     }
 
+    @Override
+    public Account postLogin(LoginDto loginDto) {
+        return accountRepo.getAccountByLoginId(loginDto.getLoginId());
+    }
+
     @Autowired
     public void setAccountRepo(AccountRepo accountRepo) {
         this.accountRepo = accountRepo;

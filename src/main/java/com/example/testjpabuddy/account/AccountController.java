@@ -1,10 +1,7 @@
 package com.example.testjpabuddy.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,11 @@ public class AccountController {
     @GetMapping("/accounts/{id}")
     public Account getAccountById(@PathVariable Long id){
         return accountService.getAccountById(id);
+    }
+
+    @PostMapping("/login")
+    public Account postLogin(@RequestBody LoginDto loginDto){
+        return accountService.postLogin(loginDto);
     }
 
     @Autowired
