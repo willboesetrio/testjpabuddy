@@ -26,6 +26,12 @@ public class AccountController {
         return accountService.postLogin(loginDto);
     }
 
+    @PostMapping("/register")
+    public void registerNewUser(@RequestBody RegisterDto registerDto) {
+        accountService.registerNewUser(registerDto);
+    }
+
+
     @Autowired
 
     public void setAccountService(AccountService accountService) {

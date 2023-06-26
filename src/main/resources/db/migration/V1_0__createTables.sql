@@ -6,7 +6,7 @@ create table Account_Type(
 
 create table Account(
     id bigInt not null auto_increment,
-    login_id varchar(40) not null,
+    login_id varchar(40) not null unique,
     first_name varchar(40) not null,
     last_name varchar(40) not null,
     email varchar(60) not null,

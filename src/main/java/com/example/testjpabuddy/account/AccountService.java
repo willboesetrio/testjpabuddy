@@ -9,4 +9,6 @@ public interface AccountService {
     Account getAccountById(Long id);
 
      Account postLogin(LoginDto loginDto);
+
+    void registerNewUser(RegisterDto registerDto);
 }
