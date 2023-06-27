@@ -8,4 +8,6 @@ public interface DonationService {
     Donation getDonationById(Long id);
 
     List<Donation> getDonationsByAccountId(Long AccountId);
+
+    void postDonation(DonationDto donationdto);
 }

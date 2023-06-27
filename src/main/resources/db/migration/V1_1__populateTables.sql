@@ -6,7 +6,7 @@ insert into Account (login_id, first_name, last_name, email, phone, address1, ad
     ('admin', 'adminFirst', 'adminLast', 'admin@benefithub.com', null, '999 admin ave', null, 'Charlotte', 'NC', '28203', true, 0, '2023-01-01 01:01:01', 'A'),
     ('bsmith59', 'Bryan', 'Smith', 'bsmith59@gmail.com', null, '3219 Linden Boulevard', null, 'Charlotte', 'NC', '28213', true, 10, '2023-02-03 01:01:01', 'V'),
     ('supreme_chancellor', 'Sheev', 'Palpatine', 'thesenate@gmail.com', null, '1 Coruscant place', null, 'Charlotte', 'NC', '28226', true, 5, '2023-04-04 01:01:01', 'V'),
-    ('dgibs88', 'David', 'Gibson', 'dgibs@gmail.com', null, '4321 Jenkins st', null, 'Charlotte', 'NC', '28227', true, 5, '2023-05-06 01:01:01', 'V');
+    ('dgibs88', 'David', 'Gibson', 'dgibs@gmail.com', null, '4321 Jenkins st', null, 'Charlotte', 'NC', '28227', true, 15, '2023-05-06 01:01:01', 'V');
 
 insert into Agency (name, ein, address1, address2, city, st, zip) values
     ('St. Jude''s', '12-3456789', '5199 Rea rd', 'Suite 100', 'Charlotte', 'NC', '28227'),

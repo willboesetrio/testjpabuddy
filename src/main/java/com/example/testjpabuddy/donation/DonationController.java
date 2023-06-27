@@ -26,6 +26,11 @@ public class DonationController {
         return donationService.getDonationsByAccountId(accountId);
     }
 
+    @PostMapping("/donate")
+    public void postDonation(@RequestBody DonationDto donationDto) {
+        donationService.postDonation(donationDto);
+    }
+
     @Autowired
 
     public void setDonationService(DonationService donationService) {
