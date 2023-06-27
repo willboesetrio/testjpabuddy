@@ -19,6 +19,11 @@ public class DonationServiceImpl implements DonationService{
         return donationRepo.findDonationById(id);
     }
 
+    @Override
+    public List<Donation> getDonationsByAccountId(Long accountId) {
+        return donationRepo.findByAccountId(accountId);
+    }
+
     @Autowired
 
     public void setDonationRepo(DonationRepo donationRepo) {

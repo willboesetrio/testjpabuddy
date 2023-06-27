@@ -14,6 +14,11 @@ public class EventAgencyJobServiceImpl implements EventAgencyJobService{
         return eventAgencyJobRepo.findAll();
     }
 
+    @Override
+    public EventAgencyJob getEventAgencyJobById(Long id) {
+        return eventAgencyJobRepo.getEventAgencyJobById(id);
+    }
+
     @Autowired
 
     public void setEventAgencyJobRepo(EventAgencyJobRepo eventAgencyJobRepo) {

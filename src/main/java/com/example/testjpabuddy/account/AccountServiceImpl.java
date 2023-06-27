@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public void registerNewUser(RegisterDto registerDto) {
+    public Account registerNewUser(RegisterDto registerDto) {
         Account newAccount = new Account();
 
         newAccount.setLoginId(registerDto.getLoginId());
@@ -45,6 +45,8 @@ public class AccountServiceImpl implements AccountService{
         newAccount.setAccountType(accountTypeRepo.getAccountTypeById("V"));
 
         accountRepo.save(newAccount);
+
+        return accountRepo.findByLoginId(registerDto.getLoginId());
 
     }
 

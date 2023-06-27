@@ -17,7 +17,7 @@ public class AccountController {
     }
 
     @GetMapping("/accounts/{id}")
-    public Account getAccountById(@PathVariable Long id){
+    public Account getAccountById(@PathVariable Long id) {
         return accountService.getAccountById(id);
     }
 
@@ -27,8 +27,8 @@ public class AccountController {
     }
 
     @PostMapping("/register")
-    public void registerNewUser(@RequestBody RegisterDto registerDto) {
-        accountService.registerNewUser(registerDto);
+    public Account registerNewUser(@RequestBody RegisterDto registerDto) {
+        return accountService.registerNewUser(registerDto);
     }
 
 

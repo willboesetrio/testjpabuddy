@@ -10,5 +10,5 @@ public interface AccountService {
 
      Account postLogin(LoginDto loginDto);
 
-    void registerNewUser(RegisterDto registerDto);
+    Account registerNewUser(RegisterDto registerDto);
 }

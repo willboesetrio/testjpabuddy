@@ -14,6 +14,11 @@ public class EventServiceImpl implements EventService{
         return eventRepo.findAll();
     }
 
+    @Override
+    public Event getEventById(Long id) {
+        return eventRepo.getEventById(id);
+    }
+
     @Autowired
 
     public void setEventRepo(EventRepo eventRepo) {

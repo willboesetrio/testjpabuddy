@@ -1,10 +1,7 @@
 package com.example.testjpabuddy.donation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,11 @@ public class DonationController {
     @GetMapping("/donations/{id}")
     public Donation getDonationById(@PathVariable Long id) {
         return donationService.getDonationById(id);
+    }
+
+    @GetMapping("/user-donations")
+    public List<Donation> getDonationsByAccountId(@RequestParam Long accountId) {
+        return donationService.getDonationsByAccountId(accountId);
     }
 
     @Autowired

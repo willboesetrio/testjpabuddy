@@ -6,4 +6,6 @@ public interface DonationService {
     List<Donation> getAllDonations();
 
     Donation getDonationById(Long id);
+
+    List<Donation> getDonationsByAccountId(Long AccountId);
 }

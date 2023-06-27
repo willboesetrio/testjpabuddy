@@ -15,6 +15,11 @@ public class EventParticipantServiceImpl implements EventParticipantService{
         return eventParticipantRepo.findAll();
     }
 
+    @Override
+    public List<EventParticipant> getEventParticipantsByAccountId(Long accountId) {
+        return eventParticipantRepo.findByAccountId(accountId);
+    }
+
     @Autowired
 
     public void setEventParticipantRepo(EventParticipantRepo eventParticipantRepo) {
