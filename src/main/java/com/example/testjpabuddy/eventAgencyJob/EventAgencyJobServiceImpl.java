@@ -19,6 +19,11 @@ public class EventAgencyJobServiceImpl implements EventAgencyJobService{
         return eventAgencyJobRepo.getEventAgencyJobById(id);
     }
 
+    @Override
+    public EventAgencyJob postEventAgencyJob(EventAgencyJob eventAgencyJob) {
+        return null;
+    }
+
     @Autowired
 
     public void setEventAgencyJobRepo(EventAgencyJobRepo eventAgencyJobRepo) {

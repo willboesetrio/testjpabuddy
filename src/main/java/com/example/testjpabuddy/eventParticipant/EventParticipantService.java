@@ -6,4 +6,6 @@ public interface EventParticipantService {
      public List<EventParticipant> getAllEventParticipants();
 
      List<EventParticipant> getEventParticipantsByAccountId(Long accountId);
+
+    EventParticipant postEventParticipant(EventParticipantDto eventParticipantDto);
 }

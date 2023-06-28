@@ -2,10 +2,7 @@ package com.example.testjpabuddy.eventAgencyJob;
 
 import com.example.testjpabuddy.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,11 @@ public class EventAgencyJobController {
     @GetMapping("/event-agency-jobs/{id}")
     public EventAgencyJob getEventAgencyJobById(@PathVariable Long id){
         return eventAgencyJobService.getEventAgencyJobById(id);
+    }
+
+    @PostMapping("/event-agency-jobs")
+    public EventAgencyJob postEventAgencyJob(@RequestBody EventAgencyJob eventAgencyJob) {
+        return eventAgencyJobService.postEventAgencyJob(eventAgencyJob);
     }
 
     @Autowired
