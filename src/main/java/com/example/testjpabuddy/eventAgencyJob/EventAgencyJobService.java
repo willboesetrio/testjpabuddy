@@ -7,5 +7,5 @@ public interface EventAgencyJobService {
 
     EventAgencyJob getEventAgencyJobById(Long id);
 
-    EventAgencyJob postEventAgencyJob(EventAgencyJob eventAgencyJob);
+    EventAgencyJob postEventAgencyJob(EAJDto eajDto);
 }

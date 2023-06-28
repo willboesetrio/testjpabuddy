@@ -5,4 +5,6 @@ import java.util.List;
 public interface AgencyService {
     List<Agency> getAllAgencies();
     Agency getAgencyById(Long id);
+
+    Agency postNewAgency(Agency agency);
 }

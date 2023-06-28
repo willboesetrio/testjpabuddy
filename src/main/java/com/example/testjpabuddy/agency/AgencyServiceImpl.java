@@ -19,6 +19,11 @@ public class AgencyServiceImpl implements AgencyService{
        return agencyRepo.getAgencyById(id);
     }
 
+    @Override
+    public Agency postNewAgency(Agency agency) {
+        return agencyRepo.save(agency);
+    }
+
     @Autowired
 
     public void setAgencyRepo(AgencyRepo agencyRepo) {

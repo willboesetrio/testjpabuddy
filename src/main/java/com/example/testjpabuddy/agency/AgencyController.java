@@ -1,10 +1,7 @@
 package com.example.testjpabuddy.agency;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,11 @@ public class AgencyController {
     @GetMapping("/agencies/{id}")
     public Agency getAgencyById(@PathVariable Long id){
         return agencyService.getAgencyById(id);
+    }
+
+    @PostMapping("/agencies")
+    public Agency postNewAgency(@RequestBody Agency agency) {
+        return agencyService.postNewAgency(agency);
     }
 
     @Autowired

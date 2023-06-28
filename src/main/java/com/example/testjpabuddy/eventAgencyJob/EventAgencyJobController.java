@@ -23,8 +23,8 @@ public class EventAgencyJobController {
     }
 
     @PostMapping("/event-agency-jobs")
-    public EventAgencyJob postEventAgencyJob(@RequestBody EventAgencyJob eventAgencyJob) {
-        return eventAgencyJobService.postEventAgencyJob(eventAgencyJob);
+    public EventAgencyJob postEventAgencyJob(@RequestBody EAJDto eajDto) {
+        return eventAgencyJobService.postEventAgencyJob(eajDto);
     }
 
     @Autowired
