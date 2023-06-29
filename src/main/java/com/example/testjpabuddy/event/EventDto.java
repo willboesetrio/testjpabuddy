@@ -1,5 +1,7 @@
 package com.example.testjpabuddy.event;
 
+import java.time.Instant;
+
 public class EventDto {
     public String name;
     public String address1;
@@ -13,6 +15,10 @@ public class EventDto {
     public String zip;
 
     public Long agencyId;
+
+    private Instant eventDatetime;
+
+
 
     public String getName() {
         return name;
@@ -68,5 +74,13 @@ public class EventDto {
 
     public void setAgencyId(Long agencyId) {
         this.agencyId = agencyId;
+    }
+
+    public Instant getEventDatetime() {
+        return eventDatetime;
+    }
+
+    public void setEventDatetime(Instant eventDatetime) {
+        this.eventDatetime = eventDatetime;
     }
 }

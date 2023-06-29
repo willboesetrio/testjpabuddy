@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -44,6 +45,17 @@ public class Event {
     @JsonIdentityReference(alwaysAsId=true)
     @JsonProperty("agency_id")
     public Agency agency;
+
+    @Column(name = "EVENT_DATETIME", nullable = false)
+    private Instant eventDatetime;
+
+    public Instant getEventDatetime() {
+        return eventDatetime;
+    }
+
+    public void setEventDatetime(Instant eventDatetime) {
+        this.eventDatetime = eventDatetime;
+    }
 
     public Agency getAgency() {
         return agency;

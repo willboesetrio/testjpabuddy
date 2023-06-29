@@ -32,6 +32,7 @@ public class EventServiceImpl implements EventService{
         thisEvent.setCity(eventDto.getCity());
         thisEvent.setSt(eventDto.getSt());
         thisEvent.setZip(eventDto.getZip());
+        thisEvent.setEventDatetime(eventDto.getEventDatetime());
         thisEvent.setAgency(agencyRepo.getAgencyById(eventDto.getAgencyId()));
 
         return eventRepo.save(thisEvent);

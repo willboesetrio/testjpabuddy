@@ -16,12 +16,12 @@ insert into Agency (name, ein, address1, address2, city, st, zip) values
     ('Charlotte Black Dogs', '86-7456123', '6420 Rea rd', null, 'Charlotte', 'NC', '28226');
 
 
-insert into Event (name, address1, address2, city, st, zip) values
-    ('Toys for Tots', '200 Hawthorne ln', 'Suite 101A', 'Charlotte', 'NC', '28205'),
-    ('5k Charity Run', '100 Elizabeth ave', null, 'Charlotte', 'NC', '28205'),
-    ('Dog Adoption Event', '6420 Rea rd', null, 'Charlotte', 'NC', '28226'),
-    ('Blood Drive', '5199 Rea rd', 'Suite 100', 'Charlotte', 'NC', '28227'),
-    ('Annual Fundraiser', '301 N Tryon st', 'Suite 201B', 'Charlotte', 'NC', '28202');
+insert into Event (name, address1, address2, city, st, zip, event_datetime) values
+    ('Toys for Tots', '200 Hawthorne ln', 'Suite 101A', 'Charlotte', 'NC', '28205', '2023-03-03 12:00:00'),
+    ('5k Charity Run', '100 Elizabeth ave', null, 'Charlotte', 'NC', '28205', '2023-03-03 12:00:00'),
+    ('Dog Adoption Event', '6420 Rea rd', null, 'Charlotte', 'NC', '28226', '2023-03-03 12:00:00'),
+    ('Blood Drive', '5199 Rea rd', 'Suite 100', 'Charlotte', 'NC', '28227', '2023-03-03 12:00:00'),
+    ('Annual Fundraiser', '301 N Tryon st', 'Suite 201B', 'Charlotte', 'NC', '28202', '2023-03-03 12:00:00');
 
 insert into Donation (account_id, agency_id, donation_datetime, event_id) values
     (1, 1, '2023-01-01 01:01:01', null),

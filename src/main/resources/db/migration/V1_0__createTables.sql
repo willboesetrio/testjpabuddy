@@ -45,6 +45,7 @@ create table Event(
     city varchar(30) not null,
     st char(2) not null,
     zip varchar(10) not null,
+    event_datetime timestamp not null,
     constraint pk_Event primary key(id)
 );
 
