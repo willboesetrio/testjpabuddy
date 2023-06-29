@@ -36,6 +36,11 @@ public class AccountController {
         return accountService.addPointsToUser(addPointsDto);
     }
 
+    @PutMapping("/accounts")
+    public Account updateAccount(@RequestBody Account account) {
+        return accountService.updateAccount(account);
+    }
+
 
     @Autowired
 

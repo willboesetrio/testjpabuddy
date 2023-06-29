@@ -13,4 +13,6 @@ public interface AccountService {
     Account registerNewUser(RegisterDto registerDto);
 
     Account addPointsToUser(AddPointsDto addPointsDto);
+
+    Account updateAccount(Account account);
 }

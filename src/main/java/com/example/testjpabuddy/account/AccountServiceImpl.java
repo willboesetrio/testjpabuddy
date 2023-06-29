@@ -60,6 +60,13 @@ public class AccountServiceImpl implements AccountService{
         return accountRepo.save(thisAccount);
     }
 
+    @Override
+    public Account updateAccount(Account account) {
+        account.setAccountType(accountTypeRepo.getAccountTypeById("V"));
+        account.setLastLoginTimestamp(Instant.now());
+        return accountRepo.save(account);
+    }
+
     @Autowired
     public void setAccountRepo(AccountRepo accountRepo) {
         this.accountRepo = accountRepo;
