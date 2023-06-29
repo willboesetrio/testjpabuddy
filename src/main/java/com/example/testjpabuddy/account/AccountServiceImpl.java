@@ -50,6 +50,16 @@ public class AccountServiceImpl implements AccountService{
 
     }
 
+    @Override
+    public Account addPointsToUser(AddPointsDto addPointsDto) {
+
+        Account thisAccount = accountRepo.getAccountById(addPointsDto.getAccountId());
+        Integer previousPoints = thisAccount.getPoints();
+        thisAccount.setPoints(addPointsDto.getPoints() + previousPoints);
+
+        return accountRepo.save(thisAccount);
+    }
+
     @Autowired
     public void setAccountRepo(AccountRepo accountRepo) {
         this.accountRepo = accountRepo;

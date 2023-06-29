@@ -31,6 +31,11 @@ public class AccountController {
         return accountService.registerNewUser(registerDto);
     }
 
+    @PutMapping("/add-points")
+    public Account addPointsToUser(@RequestBody AddPointsDto addPointsDto) {
+        return accountService.addPointsToUser(addPointsDto);
+    }
+
 
     @Autowired
 
