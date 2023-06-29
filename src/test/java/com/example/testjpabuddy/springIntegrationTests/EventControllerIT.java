@@ -1,10 +1,11 @@
 package com.example.testjpabuddy.springIntegrationTests;
-import com.example.testjpabuddy.donation.Donation;
-import com.example.testjpabuddy.donation.DonationController;
-import com.example.testjpabuddy.donation.DonationServiceImpl;
-import com.example.testjpabuddy.donationItem.DonationItem;
+
+import com.example.testjpabuddy.agency.Agency;
 import com.example.testjpabuddy.donationItem.DonationItemController;
 import com.example.testjpabuddy.donationItem.DonationItemServiceImpl;
+import com.example.testjpabuddy.event.Event;
+import com.example.testjpabuddy.event.EventController;
+import com.example.testjpabuddy.event.EventServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +25,36 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@WebMvcTest(DonationItemController.class)
+@WebMvcTest(EventController.class)
 @AutoConfigureMockMvc
-public class DonationItemIT {
+public class EventControllerIT {
 
     @MockBean
-    DonationItemServiceImpl donationItemService;
+    EventServiceImpl eventService;
     @Autowired
     MockMvc mockMvc;
     @Autowired
     ObjectMapper mapper;
 
     @Test
-    public void getByDonationId() throws Exception {
-        Long dummyId = 1l;
+    public void getAllEvents() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/donation-items/" + dummyId)
+                        MockMvcRequestBuilders.get("/events")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(donationItemService, times(1)).getByDonationId(dummyId);
+        verify(eventService, times(1)).getAllEvents();
     }
-
     @Test
-    public void geByDonationIdReturns() throws Exception {
+    public void getAllEventsReturns() throws Exception {
 
-        List<DonationItem> dummyList = Arrays.asList(new DonationItem(), new DonationItem());
-        Long dummyId = 1L;
+        List<Event> dummyList = Arrays.asList(new Event(), new Event());
 
-        when(donationItemService.getByDonationId(dummyId)).thenReturn(dummyList);
+        when(eventService.getAllEvents()).thenReturn(dummyList);
 
         ResultActions resultActions = this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/donation-items/" + dummyId)
+                        MockMvcRequestBuilders.get("/events")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -64,7 +62,7 @@ public class DonationItemIT {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        List<DonationItem> actualResponse = mapper.readValue(contentAsString, List.class);
+        List<Event> actualResponse = mapper.readValue(contentAsString, List.class);
 
         assertEquals(actualResponse.size(), dummyList.size());
     }
