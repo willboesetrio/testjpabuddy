@@ -1,12 +1,13 @@
 package com.example.testjpabuddy.springIntegrationTests;
 
-import com.example.testjpabuddy.agency.Agency;
-import com.example.testjpabuddy.donationItem.DonationItemController;
-import com.example.testjpabuddy.donationItem.DonationItemServiceImpl;
 import com.example.testjpabuddy.event.Event;
 import com.example.testjpabuddy.event.EventController;
 import com.example.testjpabuddy.event.EventDto;
 import com.example.testjpabuddy.event.EventServiceImpl;
+import com.example.testjpabuddy.eventAgencyJob.EAJDto;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJob;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJobController;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJobServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.Test;
@@ -27,36 +28,36 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@WebMvcTest(EventController.class)
+@WebMvcTest(EventAgencyJobController.class)
 @AutoConfigureMockMvc
-public class EventControllerIT {
+public class EventAgencyJobIT {
 
     @MockBean
-    EventServiceImpl eventService;
+    EventAgencyJobServiceImpl eventAgencyJobService;
     @Autowired
     MockMvc mockMvc;
     @Autowired
     ObjectMapper mapper;
 
     @Test
-    public void getAllEvents() throws Exception {
+    public void getAllEAJs() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/events")
+                        MockMvcRequestBuilders.get("/event-agency-jobs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(eventService, times(1)).getAllEvents();
+        verify(eventAgencyJobService, times(1)).getAllEventAgencyJobs();
     }
     @Test
     public void getAllEventsReturns() throws Exception {
 
-        List<Event> dummyList = Arrays.asList(new Event(), new Event());
+        List<EventAgencyJob> dummyList = Arrays.asList(new EventAgencyJob(), new EventAgencyJob());
 
-        when(eventService.getAllEvents()).thenReturn(dummyList);
+        when(eventAgencyJobService.getAllEventAgencyJobs()).thenReturn(dummyList);
 
         ResultActions resultActions = this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/events")
+                        MockMvcRequestBuilders.get("/event-agency-jobs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -64,44 +65,44 @@ public class EventControllerIT {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        List<Event> actualResponse = mapper.readValue(contentAsString, List.class);
+        List<EventAgencyJob> actualResponse = mapper.readValue(contentAsString, List.class);
 
         assertEquals(actualResponse.size(), dummyList.size());
     }
 
     @Test
-    public void postEvent() throws Exception {
-        EventDto dummyDto = new EventDto();
+    public void postEAJ() throws Exception {
+        EAJDto dummyDto = new EAJDto();
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(dummyDto);
 
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.post("/events")
+                        MockMvcRequestBuilders.post("/event-agency-jobs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(json)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(eventService, times(1)).postNewEvent(any());
+        verify(eventAgencyJobService, times(1)).postEventAgencyJob(any());
     }
 
     @Test
-    public void postEventReturns() throws Exception {
-        EventDto dummyDto = new EventDto();
+    public void postEAJReturns() throws Exception {
+        EAJDto dummyDto = new EAJDto();
         String dummyName = "DummyName";
         dummyDto.setName(dummyName);
-        Event dummyEvent = new Event();
+        EventAgencyJob dummyEvent = new EventAgencyJob();
         dummyEvent.setName(dummyName);
 
 
-        when(eventService.postNewEvent(any())).thenReturn(dummyEvent);
+        when(eventAgencyJobService.postEventAgencyJob(any())).thenReturn(dummyEvent);
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(dummyDto);
 
         ResultActions resultActions = this.mockMvc.perform(
-                        MockMvcRequestBuilders.post("/events")
+                        MockMvcRequestBuilders.post("/event-agency-jobs")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(json)
                                 .accept("application/json"))
@@ -110,9 +111,10 @@ public class EventControllerIT {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        Event actualResponse = mapper.readValue(contentAsString, Event.class);
+        EventAgencyJob actualResponse = mapper.readValue(contentAsString, EventAgencyJob.class);
 
         assertEquals(actualResponse.getName(), dummyName);
     }
+
 
 }

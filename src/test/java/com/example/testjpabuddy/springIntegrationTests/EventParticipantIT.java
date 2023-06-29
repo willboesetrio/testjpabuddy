@@ -1,12 +1,12 @@
 package com.example.testjpabuddy.springIntegrationTests;
-
-import com.example.testjpabuddy.agency.Agency;
-import com.example.testjpabuddy.donationItem.DonationItemController;
-import com.example.testjpabuddy.donationItem.DonationItemServiceImpl;
-import com.example.testjpabuddy.event.Event;
-import com.example.testjpabuddy.event.EventController;
-import com.example.testjpabuddy.event.EventDto;
-import com.example.testjpabuddy.event.EventServiceImpl;
+import com.example.testjpabuddy.eventAgencyJob.EAJDto;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJob;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJobController;
+import com.example.testjpabuddy.eventAgencyJob.EventAgencyJobServiceImpl;
+import com.example.testjpabuddy.eventParticipant.EventParticipant;
+import com.example.testjpabuddy.eventParticipant.EventParticipantController;
+import com.example.testjpabuddy.eventParticipant.EventParticipantDto;
+import com.example.testjpabuddy.eventParticipant.EventParticipantServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.Test;
@@ -27,36 +27,36 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@WebMvcTest(EventController.class)
+@WebMvcTest(EventParticipantController.class)
 @AutoConfigureMockMvc
-public class EventControllerIT {
+public class EventParticipantIT {
 
     @MockBean
-    EventServiceImpl eventService;
+    EventParticipantServiceImpl eventParticipantService;
     @Autowired
     MockMvc mockMvc;
     @Autowired
     ObjectMapper mapper;
 
     @Test
-    public void getAllEvents() throws Exception {
+    public void getAllEPs() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/events")
+                        MockMvcRequestBuilders.get("/event-participants")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(eventService, times(1)).getAllEvents();
+        verify(eventParticipantService, times(1)).getAllEventParticipants();
     }
     @Test
     public void getAllEventsReturns() throws Exception {
 
-        List<Event> dummyList = Arrays.asList(new Event(), new Event());
+        List<EventParticipant> dummyList = Arrays.asList(new EventParticipant(), new EventParticipant());
 
-        when(eventService.getAllEvents()).thenReturn(dummyList);
+        when(eventParticipantService.getAllEventParticipants()).thenReturn(dummyList);
 
         ResultActions resultActions = this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/events")
+                        MockMvcRequestBuilders.get("/event-participants")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -64,44 +64,43 @@ public class EventControllerIT {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        List<Event> actualResponse = mapper.readValue(contentAsString, List.class);
+        List<EventParticipant> actualResponse = mapper.readValue(contentAsString, List.class);
 
         assertEquals(actualResponse.size(), dummyList.size());
     }
 
     @Test
-    public void postEvent() throws Exception {
-        EventDto dummyDto = new EventDto();
+    public void postEP() throws Exception {
+        EventParticipantDto dummyDto = new EventParticipantDto();
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(dummyDto);
 
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.post("/events")
+                        MockMvcRequestBuilders.post("/event-participants")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(json)
                                 .accept("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(eventService, times(1)).postNewEvent(any());
+        verify(eventParticipantService, times(1)).postEventParticipant(any());
     }
 
     @Test
-    public void postEventReturns() throws Exception {
-        EventDto dummyDto = new EventDto();
-        String dummyName = "DummyName";
-        dummyDto.setName(dummyName);
-        Event dummyEvent = new Event();
-        dummyEvent.setName(dummyName);
+    public void postEPReturns() throws Exception {
+        EventParticipantDto dummyDto = new EventParticipantDto();
+        Long dummyId = 1L;
+        EventParticipant dummyEP = new EventParticipant();
+        dummyEP.setId(dummyId);
 
 
-        when(eventService.postNewEvent(any())).thenReturn(dummyEvent);
+        when(eventParticipantService.postEventParticipant(any())).thenReturn(dummyEP);
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(dummyDto);
 
         ResultActions resultActions = this.mockMvc.perform(
-                        MockMvcRequestBuilders.post("/events")
+                        MockMvcRequestBuilders.post("/event-participants")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(json)
                                 .accept("application/json"))
@@ -110,9 +109,9 @@ public class EventControllerIT {
         MvcResult result = resultActions.andReturn();
         String contentAsString = result.getResponse().getContentAsString();
 
-        Event actualResponse = mapper.readValue(contentAsString, Event.class);
+        EventParticipant actualResponse = mapper.readValue(contentAsString, EventParticipant.class);
 
-        assertEquals(actualResponse.getName(), dummyName);
+        assertEquals(actualResponse.getId(), dummyId);
     }
 
 }
